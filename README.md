@@ -21,7 +21,7 @@ docker run -tid \
 The utility `grpcurl` can be used to test the mock server using the
 following command:
 ```bash
-grpcurl -proto $(pwd)/example/greeter.proto \
+grpcurl -proto example/greeter.proto \
   -plaintext \
   -d '{"message": "Hello"}' \
   localhost:50051 greeter.Greeter/Hello
@@ -32,7 +32,7 @@ In the `example` directory there is input samples for the streaming requests to 
 you can issue commands similar to the following (substituting the appropriate input file and
 method name):
 ```bash
-cat example/chat-1.json | grpcurl -proto $(pwd)/example/greeter.proto \
+cat example/chat-1.json | grpcurl -proto example/greeter.proto \
   -plaintext -d @ localhost:50051 greeter.Greeter/Chat
 ```
 
