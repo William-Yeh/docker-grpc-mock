@@ -3,6 +3,9 @@ const mockServer = createMockServer({
   protoPath: "/proto/greeter.proto",
   packageName: "greeter",
   serviceName: "Greeter",
+  options: {
+    keepCase: true  // fix: https://github.com/YoshiyukiKato/grpc-mock/issues/11
+  },
   rules: [
     { method: "hello", input: { message: "Hello" }, output: { message: "Hello" } },
     { method: "hello", input: { message: "Hi" }, output: { message: "A little familar, are't you" } },
