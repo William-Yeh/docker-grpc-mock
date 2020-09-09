@@ -2,9 +2,8 @@
 
 ![Docker Image CI](https://github.com/William-Yeh/docker-grpc-mock/workflows/Docker%20Image%20CI/badge.svg)
 
-This repository (forked from [`ciena/docker-grpc-mock`](https://github.com/ciena/docker-grpc-mock)) can be used to build a docker image that leverages
-`grpc-mock` (`https://github.com/YoshiyukiKato/grpc-mock`) to provide
-a *mock* GRPC server that can be utilized for testing.
+This repository can be used to build a docker image that leverages `grpc-mock` (`https://github.com/YoshiyukiKato/grpc-mock`) to provide a *mock* gRPC server that can be utilized for testing.
+
 
 # Usage
 
@@ -55,3 +54,7 @@ environment variables can be set when starting the mock server container:
 GRPC_VERBOSITY=DEBUG
 GRPC_TRACE=all
 ```
+
+## Credit
+
+This repo was originally forked from [`ciena/docker-grpc-mock`](https://github.com/ciena/docker-grpc-mock) on May 2020, which was based on `node:8.16-alpine`.
