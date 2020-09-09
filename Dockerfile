@@ -1,20 +1,24 @@
-FROM node:14.1.0-alpine3.10
-MAINTAINER William Yeh <william.pjyeh@gmail.com>
+FROM node:14 AS builder
+LABEL maintainer="william.pjyeh@gmail.com" name="William Yeh"
 
-ENV NODE_PATH=/usr/local/lib/node_modules
+ADD . /app
+WORKDIR /app
 
-RUN echo "===> Adding compiling tools for npm..."     && \
-    apk add --no-cache git python3 make g++ musl-dev  && \
-    \
-    \
-    echo "===> Installing grpc-mock..."           && \
-    npm config set unsafe-perm true               && \
-    npm install YoshiyukiKato/grpc-mock --global  && \
-    \
-    \
-    echo "===> Removing unused stuff..."    && \
-    apk del git python3 make g++ musl-dev   && \
-    rm -rf /var/cache/apk/*
+RUN echo "===> Installing grpc-mock..."
+RUN npm config set unsafe-perm true
+RUN npm install YoshiyukiKato/grpc-mock
+
+#
+#-------------------------------
+#
+
+FROM gcr.io/distroless/nodejs:14
+#FROM gcr.io/distroless/nodejs:14-debug
+#FROM node:14
+LABEL maintainer="william.pjyeh@gmail.com" name="William Yeh"
+
+COPY --from=builder /app/node_modules /app/node_modules
+ENV NODE_PATH=/app/node_modules
 
 EXPOSE 50051
-ENTRYPOINT ["node"]
+#ENTRYPOINT ["node"]
