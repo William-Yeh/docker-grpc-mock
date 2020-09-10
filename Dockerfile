@@ -1,4 +1,4 @@
-FROM node:14 AS builder
+FROM node:14-buster AS builder
 LABEL maintainer="william.pjyeh@gmail.com" name="William Yeh"
 
 ADD . /app
@@ -12,8 +12,8 @@ RUN npm install YoshiyukiKato/grpc-mock
 #-------------------------------
 #
 
-FROM gcr.io/distroless/nodejs:14
-#FROM gcr.io/distroless/nodejs:14-debug
+FROM gcr.io/distroless/nodejs-debian10:14
+#FROM gcr.io/distroless/nodejs-debian10:14-debug
 #FROM node:14
 LABEL maintainer="william.pjyeh@gmail.com" name="William Yeh"
 
